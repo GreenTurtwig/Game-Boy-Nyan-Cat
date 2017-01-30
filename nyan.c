@@ -61,10 +61,6 @@ void title() {
 void nyanCat() {
     gbt_update(); // Music
 
-    if (joypad() != J_A && joypad() != J_B) { // Check if AB are not pressed anymore
-        abPressed = 0;
-    }
-
     if (joypad() & J_A && abPressed == 0) { // If AB are pressed up and AB weren't already pressed
         selection++; // Up selection by one
 
@@ -96,6 +92,7 @@ void nyanCat() {
         abPressed = 1;
     }
 
+    abPressed = joypad() & (J_A | J_B);
 
     // Change coords on dpad press
     if (joypad() & J_UP) { // The "&" is there to check if "J_UP" is one of the things returned by "joypad()"
